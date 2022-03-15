@@ -22,6 +22,14 @@ const GlobalStyle = createGlobalStyle`
     }
     button {
       all: unset;
+      box-sizing: border-box;
+    }
+    a {
+      color:inherit;
+      text-decoration:none;
+    }
+    a:hover {
+      color:inherit;
     }
 `;
 
