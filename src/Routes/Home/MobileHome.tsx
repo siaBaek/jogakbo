@@ -45,41 +45,13 @@ const Welcome = styled.div`
   }
 `;
 
-const BannerContainer = styled.div`
-  height: 300px;
-  width: 375px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 0;
-  width: 100%;
-  height: 400px;
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(7.5px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: 20px;
-`;
-
-const Images = styled.div`
-  position: relative;
-  display: flex;
-  height: 300px;
-  transition: transfrom 0.5s;
-`;
-
-const BannerImage = styled.img`
-  width: 375px;
-`;
-
 const BtnContainer = styled.div`
   position: absolute;
   bottom: 30px;
   left: 30px;
   right: 30px;
   p {
+    color: white;
     text-align: center;
     padding: 2px;
   }
