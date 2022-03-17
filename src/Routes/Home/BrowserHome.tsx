@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import banner from "../../assets/banner.jpg";
 import logo from "../../assets/logo.png";
 import blockchain from "../../assets/blockchain.png";
@@ -7,13 +7,16 @@ import wallet from "../../assets/wallet.png";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 
 // 소개 배너 컴포넌트 Intro
 
 const Banner = styled.div`
   width: 100%;
   height: 500px;
-  background: url(${banner}) center center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+    url(${banner});
+  background-position: center center;
   background-size: cover;
 `;
 const BannerContainer = styled.div`
@@ -29,7 +32,7 @@ const BannerContainer = styled.div`
   }
   h1,
   p {
-    color: white;
+    color: ${(props) => props.theme.bgColor};
   }
   h1 {
     font-size: 42px;
@@ -37,7 +40,7 @@ const BannerContainer = styled.div`
   button {
     width: 150px;
     padding: 8px 10px;
-    background: white;
+    background: ${(props) => props.theme.bgColor};
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
@@ -71,10 +74,22 @@ const BrowserContainer = styled.div`
   padding: 30px 0;
 `;
 
+const GradientBorder = styled.div`
+  width: 100%;
+  padding: 5px;
+  border: 1px solid transparent;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)),
+    ${(props) => props.theme.gradient};
+
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  margin-bottom: 100px;
+`;
+
 const Section = styled.section`
   width: 100%;
   margin-bottom: 100px;
-  padding: 30px 0;
 `;
 
 const Title = styled.h3`
@@ -98,7 +113,7 @@ const Item = styled.div`
   width: 250px;
   height: 250px;
   padding: 10px;
-  background: white;
+  background: ${(props) => props.theme.contentBgColor};
   border-radius: 15px;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 18%);
   img {
@@ -107,7 +122,7 @@ const Item = styled.div`
   p {
     text-align: center;
     padding: 20px 0;
-    color: gray;
+    color: ${(props) => props.theme.textColor};
   }
 `;
 
@@ -119,9 +134,8 @@ const TabContainer = styled.div`
 const Tab = styled.div<{ tab: boolean }>`
   width: 150px;
   padding: 15px 20px;
-  background: ${(props) => (props.tab ? "white" : "lightgray")};
+  background: ${(props) => (props.tab ? useTheme().bgColor : useTheme().gray)};
   text-align: center;
-  border-bottom: ${(props) => (props.tab ? "3px solid pink" : "none")};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;
@@ -141,23 +155,23 @@ const DevProfile = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: lightgreen;
+  background: lightgray;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
 `;
 
-const Question = styled.div`
+const Question = styled(motion.li)`
   margin-bottom: 10px;
   padding: 20px 30px;
-  background: lightcoral;
+  background: ${(props) => props.theme.gray};
   border-radius: 10px;
   color: white;
   font-size: 18px;
   cursor: pointer;
 `;
 
-const Answer = styled.div`
-  display: none;
+const Answer = styled(motion.div)`
   margin-bottom: 10px;
+  display: none;
   padding: 20px 30px;
   font-size: 18px;
 `;
@@ -173,10 +187,6 @@ function BrowserHome() {
       ? (answer!.style.display = "block")
       : (answer!.style.display = "none");
   };
-
-  useEffect(() => {
-    AOS.init();
-  });
 
   const QuestionData = [
     {
@@ -194,6 +204,10 @@ function BrowserHome() {
     { question: "질문5", answer: "답변5" },
     { question: "질문6", answer: "답변6" },
   ];
+
+  useEffect(() => {
+    AOS.init();
+  });
 
   return (
     <>
@@ -250,18 +264,31 @@ function BrowserHome() {
         </Section>
         <Section data-aos="fade-up" data-aos-anchor-placement="center-bottom">
           <Title>✔️ 로드맵</Title>
-          <p> 준비중입니다 </p>
+          <p
+            style={{
+              display: "block",
+              padding: "30px",
+              backgroundColor: useTheme().gray,
+              height: "300px",
+              borderRadius: 15,
+            }}
+          >
+            {" "}
+            준비중입니다{" "}
+          </p>
         </Section>
         <Section data-aos="fade-up" data-aos-anchor-placement="center-bottom">
           <Title>✔️ Q&A</Title>
-          {QuestionData.map((a, i) => (
-            <>
-              <Question onClick={() => onClickQuestion(i)}>
-                ❔ {a.question}
-              </Question>
-              <Answer id={`${i}`}>❗️ {a.answer}</Answer>
-            </>
-          ))}
+          <ul>
+            {QuestionData.map((a, i) => (
+              <>
+                <Question onClick={() => onClickQuestion(i)}>
+                  ❔ {a.question}
+                </Question>
+                <Answer id={`${i}`}>❗️ {a.answer}</Answer>
+              </>
+            ))}
+          </ul>
         </Section>
       </BrowserContainer>
     </>
@@ -273,8 +300,8 @@ export default BrowserHome;
 const TabBackground1 = styled.div`
   margin: 0 30px;
   padding: 60px 30px;
-  background-color: white;
-  box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+  background-color: ${(props) => props.theme.bgColor};
+  box-shadow: ${(props) => props.theme.boxShadow1};
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
@@ -293,9 +320,9 @@ const Step = styled.div`
   margin-bottom: 40px;
   padding: 10px 15px;
   width: 100px;
-  background: white;
+  background: ${(props) => props.theme.contentBgColor};
   border-radius: 20px;
-  box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+  box-shadow: ${(props) => props.theme.boxShadow1};
   text-align: center;
 `;
 
@@ -325,8 +352,8 @@ function Tab1() {
 const TabBackground2 = styled.div`
   margin: 0 30px;
   padding: 60px 30px;
-  background-color: white;
-  box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+  background-color: ${(props) => props.theme.bgColor};
+  box-shadow: ${(props) => props.theme.boxShadow1};
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 `;

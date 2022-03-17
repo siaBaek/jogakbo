@@ -15,7 +15,7 @@ const Splash = styled.div`
   color: white;
   font-size: 32px;
   letter-spacing: 2px;
-  background: linear-gradient(45deg, #feac5e 0%, #c779d0 50%, #4bc0c8 100%);
+  background: ${(props) => props.theme.gradient};
   z-index: 99999;
 `;
 
@@ -26,7 +26,6 @@ const Container = styled.div`
   height: 100vh;
   background: url(${banner}) center center;
   opacity: 0.85;
-  /* background: linear-gradient(45deg, #feac5e 0%, #c779d0 50%, #4bc0c8 100%); */
 `;
 
 const Welcome = styled.div`
@@ -74,8 +73,6 @@ const LogInBtn = styled.button`
 function MobileHome() {
   const [splash, setSplash] = useState(true);
 
-  const [index, setIndex] = useState(0);
-
   useEffect(() => {
     let timer = setTimeout(() => {
       setSplash(false);
@@ -84,10 +81,6 @@ function MobileHome() {
       clearTimeout(timer);
     };
   });
-
-  const handleSelect = (selectedIndex: number) => {
-    setIndex(selectedIndex);
-  };
 
   return (
     <>

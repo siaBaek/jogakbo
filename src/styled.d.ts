@@ -2,14 +2,18 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    black: {
-      veryDark: string;
-      darker: string;
-      lighter: string;
-    };
-    white: {
-      darker: string;
-      lighter: string;
+    gradient: string;
+    bgColor: string;
+    contentBgColor: string;
+    textColor: string;
+    boxShadow1: string;
+    boxShadow2: string;
+    gray: string;
+    glass: {
+      bgColor: string;
+      border: string;
+      boxShadow: string;
+      color: string;
     };
   }
 }

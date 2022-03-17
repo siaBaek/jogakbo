@@ -1,7 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import styled, { ThemeProvider } from "styled-components";
+import { isLightModeState } from "../../atom";
 
 const Head = styled(motion.header)`
   position: fixed;
@@ -29,7 +33,7 @@ const Col = styled.div`
 const Logo = styled(motion.h1)`
   font-size: 32px;
   font-weight: bold;
-  color: white;
+  color: ${(props) => props.theme.bgColor};
 `;
 
 const MenuUl = styled.ul`
@@ -39,13 +43,13 @@ const MenuUl = styled.ul`
 const MenuLi = styled(motion.li)`
   padding: 5px 10px;
   margin: 0 5px;
-  color: white;
+  color: ${(props) => props.theme.bgColor};
   font-size: 20px;
   font-weight: bold;
 `;
 
 const ConnectWallet = styled.div`
-  background: white;
+  background: ${(props) => props.theme.bgColor};
   margin-left: 15px;
   padding: 10px 20px;
   font-weight: bold;
@@ -54,8 +58,9 @@ const ConnectWallet = styled.div`
   font-size: 14px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  /* color: ${(props) => props.theme.textColor}; */
   &:hover {
-    background: linear-gradient(45deg, #feac5e 0%, #c779d0 50%, #4bc0c8 100%);
+    background: ${(props) => props.theme.gradient};
     color: white;
   }
 `;
@@ -82,10 +87,16 @@ const logoVariants = {
   },
 };
 
+const ModeButton = styled.button``;
+
 function BrowserHeader() {
   const headAnimation = useAnimation();
   const logoAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
+  const [mode, setMode] = useRecoilState(isLightModeState);
+  const toggleMode = () => {
+    setMode((prev) => !prev);
+  };
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -118,6 +129,9 @@ function BrowserHeader() {
           </MenuUl>
         </Col>
         <Col>
+          <ModeButton onClick={() => toggleMode()} className="mr-3">
+            {mode ? "dark mode" : "light mode"}
+          </ModeButton>
           <ConnectWallet>Connect Wallet</ConnectWallet>
         </Col>
       </Container>

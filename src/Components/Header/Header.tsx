@@ -8,9 +8,7 @@ function Header() {
       <BrowserView>
         <BrowserHeader />
       </BrowserView>
-      <MobileView>
-        <MobileHeader />
-      </MobileView>
+      <MobileView>{/* <MobileHeader /> */}</MobileView>
     </>
   );
 }
