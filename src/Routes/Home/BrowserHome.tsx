@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { showSignUpState } from "../../atom";
+import Signup from "../../Components/Modal/Signup";
 
 // 소개 배너 컴포넌트 Intro
 
@@ -30,12 +34,16 @@ const BannerContainer = styled.div`
   img {
     width: 50px;
   }
-  h1,
+  h2,
   p {
     color: ${(props) => props.theme.bgColor};
   }
-  h1 {
+  h2 {
     font-size: 42px;
+  }
+  a {
+    /* display: block; */
+    width: 150px;
   }
   button {
     width: 150px;
@@ -48,11 +56,13 @@ const BannerContainer = styled.div`
 `;
 
 function Intro() {
+  const [showSignUp, setShowSignUp] = useRecoilState(showSignUpState);
+
   return (
     <Banner>
       <BannerContainer>
         <img src={logo} />
-        <h1>Welcome to Jogakbo</h1>
+        <h2>Welcome to Jogakbo</h2>
         <div>
           <p>조각보는 블록체인 기반 기부 플랫폼입니다.</p>
           <p>
@@ -60,7 +70,8 @@ function Intro() {
             있습니다.
           </p>
         </div>
-        <button>회원가입하기</button>
+        <button onClick={() => setShowSignUp(true)}>회원가입하기</button>
+        {showSignUp && <Signup />}
       </BannerContainer>
     </Banner>
   );

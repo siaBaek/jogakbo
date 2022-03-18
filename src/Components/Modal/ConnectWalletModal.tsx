@@ -19,12 +19,9 @@ import kaikas from "../../assets/png/kaikas-logo.svg";
 import metamask from "../../assets/png/metamask-logo.svg";
 import QRCode from "qrcode.react";
 import { isMobile } from "react-device-detect";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-interface IModalWrapper {
-  show: boolean;
-  onHide: Function;
-}
-const ModalWrapper = styled.div<IModalWrapper>`
+const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -39,18 +36,14 @@ const ModalWrapper = styled.div<IModalWrapper>`
 `;
 
 const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: gray;
   border-radius: 10px;
   transition: all 0.2 ease-in-out;
   width: 600px;
   padding: 44px 51px;
-`;
-
-const ConnectWalletContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
 `;
 
 const ConnectWalletModalHeader = styled.div`
@@ -112,61 +105,55 @@ function ConnectWalletModal() {
   const [showModal, setShowModal] = useRecoilState(showModalState);
   const [modalProps, setModalProps] = useRecoilState(modalPropsState);
   const [qrvalue, setQrvalue] = useRecoilState(qrValueState);
+  const times = faTimes as IconProp;
 
   return (
-    <ModalWrapper
-      show={showModal}
-      onHide={() => {
-        setShowModal(false);
-      }}
-    >
-      <ModalContent>
-        <ConnectWalletContainer>
-          <ConnectWalletModalHeader>
-            <h5>{modalProps.title}</h5>
-            <button
-              onClick={() => {
-                setShowModal(false);
-                setQrvalue("DEFAULT");
-              }}
-            >
-              X
-            </button>
-          </ConnectWalletModalHeader>
-          <ConnectWalletModalContent>
-            {qrvalue == "DEFAULT" ? (
-              <>
-                <ConnectWalletCard>
-                  <img src={metamask} />
-                  <h5>Metamask </h5>
-                </ConnectWalletCard>
-                <ConnectWalletCard>
-                  <img src={kaikas} />
-                  <h5>Kaikas </h5>
-                </ConnectWalletCard>
-                <ConnectWalletCard
-                  onClick={() => {
-                    modalProps.onConfirm();
-                  }}
-                >
-                  <img src={klip} />
-                  <h5>Klip </h5>
-                </ConnectWalletCard>
-              </>
-            ) : (
-              <>
-                <QRContainer>
-                  <QRCode
-                    value={qrvalue}
-                    // bgColor fgColor
-                    size={256}
-                    includeMargin
-                  />
-                </QRContainer>
-              </>
-            )}
-          </ConnectWalletModalContent>
-        </ConnectWalletContainer>
+    <ModalWrapper onClick={() => setShowModal(false)}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <ConnectWalletModalHeader>
+          <h5>{modalProps.title}</h5>
+          <button
+            onClick={() => {
+              setShowModal(false);
+              setQrvalue("DEFAULT");
+            }}
+          >
+            <FontAwesomeIcon icon={times} />
+          </button>
+        </ConnectWalletModalHeader>
+        <ConnectWalletModalContent>
+          {qrvalue == "DEFAULT" ? (
+            <>
+              <ConnectWalletCard>
+                <img src={metamask} />
+                <h5>Metamask </h5>
+              </ConnectWalletCard>
+              <ConnectWalletCard>
+                <img src={kaikas} />
+                <h5>Kaikas </h5>
+              </ConnectWalletCard>
+              <ConnectWalletCard
+                onClick={() => {
+                  modalProps.onConfirm();
+                }}
+              >
+                <img src={klip} />
+                <h5>Klip </h5>
+              </ConnectWalletCard>
+            </>
+          ) : (
+            <>
+              <QRContainer>
+                <QRCode
+                  value={qrvalue}
+                  // bgColor fgColor
+                  size={256}
+                  includeMargin
+                />
+              </QRContainer>
+            </>
+          )}
+        </ConnectWalletModalContent>
       </ModalContent>
     </ModalWrapper>
   );

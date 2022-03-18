@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
-import { isLightModeState, showModalState } from "../../atom";
+import { isLightModeState, showModalState, showSignUpState } from "../../atom";
 import ConnectWalletModal from "../Modal/ConnectWalletModal";
+import Signup from "../Modal/Signup";
 
 const Head = styled(motion.header)`
   position: fixed;
@@ -90,8 +91,27 @@ const logoVariants = {
 
 const ModeButton = styled.button``;
 
+const SignUp = styled.div`
+  background: ${(props) => props.theme.bgColor};
+  margin-left: 15px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  /* color: ${(props) => props.theme.textColor}; */
+  &:hover {
+    background: ${(props) => props.theme.gradient};
+    color: white;
+  }
+`;
+
 function BrowserHeader() {
   const [showModal, setShowModal] = useRecoilState(showModalState);
+  const [showSignUp, setShowSignUp] = useRecoilState(showSignUpState);
+
   const headAnimation = useAnimation();
   const logoAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -137,7 +157,9 @@ function BrowserHeader() {
           <ConnectWallet onClick={() => setShowModal(true)}>
             Connect Wallet
           </ConnectWallet>
-          {showModal ? <ConnectWalletModal /> : null}
+          {showModal && <ConnectWalletModal />}
+          <SignUp onClick={() => setShowSignUp(true)}>Sign Up</SignUp>
+          {showSignUp && <Signup />}
         </Col>
       </Container>
     </Head>

@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { isLightModeState } from "./atom";
 import Header from "./Components/Header/Header";
 import Home from "./Routes/Home/Home";
+import Signup from "./Components/Modal/Signup";
 import { GlobalStyle } from "./styles/global-style";
 import { darkTheme, lightTheme } from "./theme";
 
@@ -17,6 +18,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
