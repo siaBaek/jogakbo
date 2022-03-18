@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
-import { isLightModeState } from "../../atom";
+import { isLightModeState, showModalState } from "../../atom";
+import ConnectWalletModal from "../Modal/ConnectWalletModal";
 
 const Head = styled(motion.header)`
   position: fixed;
@@ -90,6 +91,7 @@ const logoVariants = {
 const ModeButton = styled.button``;
 
 function BrowserHeader() {
+  const [showModal, setShowModal] = useRecoilState(showModalState);
   const headAnimation = useAnimation();
   const logoAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -132,7 +134,10 @@ function BrowserHeader() {
           <ModeButton onClick={() => toggleMode()} className="mr-3">
             {mode ? "dark mode" : "light mode"}
           </ModeButton>
-          <ConnectWallet>Connect Wallet</ConnectWallet>
+          <ConnectWallet onClick={() => setShowModal(true)}>
+            Connect Wallet
+          </ConnectWallet>
+          {showModal ? <ConnectWalletModal /> : null}
         </Col>
       </Container>
     </Head>
