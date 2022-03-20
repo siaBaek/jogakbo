@@ -59,21 +59,23 @@ function Intro() {
   const [showSignUp, setShowSignUp] = useRecoilState(showSignUpState);
 
   return (
-    <Banner>
-      <BannerContainer>
-        <img src={logo} />
-        <h2>Welcome to Jogakbo</h2>
-        <div>
-          <p>조각보는 블록체인 기반 기부 플랫폼입니다.</p>
-          <p>
-            캠페인에 기부하여 NFT를 수집할 수 있고, 직접 캠페인을 만들 수도
-            있습니다.
-          </p>
-        </div>
-        <button onClick={() => setShowSignUp(true)}>회원가입하기</button>
-        {showSignUp && <Signup />}
-      </BannerContainer>
-    </Banner>
+    <>
+      <Banner>
+        <BannerContainer>
+          <img src={logo} />
+          <h2>Welcome to Jogakbo</h2>
+          <div>
+            <p>조각보는 블록체인 기반 기부 플랫폼입니다.</p>
+            <p>
+              캠페인에 기부하여 NFT를 수집할 수 있고, 직접 캠페인을 만들 수도
+              있습니다.
+            </p>
+          </div>
+          <button onClick={() => setShowSignUp(true)}>회원가입하기</button>
+        </BannerContainer>
+      </Banner>
+      {showSignUp && <Signup />}
+    </>
   );
 }
 

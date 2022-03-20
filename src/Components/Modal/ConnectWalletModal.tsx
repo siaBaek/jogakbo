@@ -30,9 +30,8 @@ const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
-  transition: all 0.2s ease-in-out;
 `;
 
 const ModalContent = styled.div`

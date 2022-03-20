@@ -10,13 +10,12 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 `;
 
@@ -25,9 +24,15 @@ const SignUpModal = styled.div`
   width: 25%;
   height: 60vh;
   border-radius: 10px;
-  background: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.glass.bgColor};
+  backdrop-filter: blur(7.5px);
+  border: ${(props) => props.theme.glass.border};
+  color: ${(props) => props.theme.glass.color};
+  box-shadow: ${(props) => props.theme.glass.boxShadow};
+
+  /* background: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
-  box-shadow: ${(props) => props.theme.boxShadow1};
+  box-shadow: ${(props) => props.theme.boxShadow1}; */
 `;
 
 const SignUpHeader = styled.header`

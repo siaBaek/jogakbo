@@ -12,7 +12,7 @@ export const lightTheme: DefaultTheme = {
     bgColor: "rgba(255, 255, 255, 0.25)",
     border: "1px solid rgba(255, 255, 255, 0.18)",
     boxShadow: "rgba(142, 142, 142, 0.19) 0px 6px 15px 0px",
-    color: "rgb(255, 255, 255, 0.75)",
+    color: "rgb(28,28,28)",
   },
 };
 
@@ -28,6 +28,6 @@ export const darkTheme: DefaultTheme = {
     bgColor: "rgba(89, 89, 89, 0.25)",
     border: "1px solid rgba(255, 255, 255, 0.18)",
     boxShadow: "rgba(14, 14, 14, 0.19) 0px 6px 15px 0px",
-    color: "rgb(128, 128, 128)",
+    color: "rgb(255, 255, 255, 0.75)",
   },
 };

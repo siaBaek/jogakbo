@@ -133,36 +133,38 @@ function BrowserHeader() {
   }, [scrollY, headAnimation, logoAnimation]);
 
   return (
-    <Head variants={headVariants} animate={headAnimation} initial={"top"}>
-      <Container>
-        <Col>
-          <Link to="/">
-            <Logo variants={logoVariants}>JOGAKBO</Logo>
-          </Link>
-        </Col>
-        <Col>
-          <MenuUl>
+    <>
+      <Head variants={headVariants} animate={headAnimation} initial={"top"}>
+        <Container>
+          <Col>
             <Link to="/">
-              <MenuLi variants={logoVariants}>Campaigns</MenuLi>
+              <Logo variants={logoVariants}>JOGAKBO</Logo>
             </Link>
-            <Link to="/">
-              <MenuLi variants={logoVariants}>Create Campaign</MenuLi>
-            </Link>
-          </MenuUl>
-        </Col>
-        <Col>
-          <ModeButton onClick={() => toggleMode()} className="mr-3">
-            {mode ? "dark mode" : "light mode"}
-          </ModeButton>
-          <ConnectWallet onClick={() => setShowModal(true)}>
-            Connect Wallet
-          </ConnectWallet>
-          {showModal && <ConnectWalletModal />}
-          <SignUp onClick={() => setShowSignUp(true)}>Sign Up</SignUp>
-          {showSignUp && <Signup />}
-        </Col>
-      </Container>
-    </Head>
+          </Col>
+          <Col>
+            <MenuUl>
+              <Link to="/">
+                <MenuLi variants={logoVariants}>Campaigns</MenuLi>
+              </Link>
+              <Link to="/">
+                <MenuLi variants={logoVariants}>Create Campaign</MenuLi>
+              </Link>
+            </MenuUl>
+          </Col>
+          <Col>
+            <ModeButton onClick={() => toggleMode()} className="mr-3">
+              {mode ? "dark mode" : "light mode"}
+            </ModeButton>
+            <ConnectWallet onClick={() => setShowModal(true)}>
+              Connect Wallet
+            </ConnectWallet>
+            <SignUp onClick={() => setShowSignUp(true)}>Sign Up</SignUp>
+          </Col>
+        </Container>
+      </Head>
+      {showModal && <ConnectWalletModal />}
+      {showSignUp && <Signup />}
+    </>
   );
 }
 
