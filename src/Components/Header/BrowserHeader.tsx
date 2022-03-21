@@ -111,7 +111,6 @@ const SignUp = styled.div`
 function BrowserHeader() {
   const [showModal, setShowModal] = useRecoilState(showModalState);
   const [showSignUp, setShowSignUp] = useRecoilState(showSignUpState);
-
   const headAnimation = useAnimation();
   const logoAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -143,7 +142,7 @@ function BrowserHeader() {
           </Col>
           <Col>
             <MenuUl>
-              <Link to="/">
+              <Link to="/campaigns">
                 <MenuLi variants={logoVariants}>Campaigns</MenuLi>
               </Link>
               <Link to="/">
