@@ -5,6 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { showSignUpState } from "../../atom";
+import { media } from "../../theme";
 
 const Container = styled.div`
   position: fixed;
@@ -29,10 +30,9 @@ const SignUpModal = styled.div`
   border: ${(props) => props.theme.glass.border};
   color: ${(props) => props.theme.glass.color};
   box-shadow: ${(props) => props.theme.glass.boxShadow};
-
-  /* background: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor};
-  box-shadow: ${(props) => props.theme.boxShadow1}; */
+  ${media.tablet} {
+    width: 50%;
+  }
 `;
 
 const SignUpHeader = styled.header`
@@ -51,6 +51,9 @@ const SignUpLogo = styled.h1`
 const SignUpText = styled.div`
   text-align: center;
   margin: 30px 0;
+  ${media.tablet} {
+    margin: 50px 0;
+  }
 `;
 
 interface ILoginButton {
@@ -72,6 +75,9 @@ const LoginButton = styled.div<ILoginButton>`
   &:hover {
     transform: translateY(-3px);
     box-shadow: ${(props) => props.theme.boxShadow2};
+  }
+  ${media.tablet} {
+    height: 80px;
   }
 `;
 

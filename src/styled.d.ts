@@ -15,5 +15,6 @@ declare module "styled-components" {
       boxShadow: string;
       color: string;
     };
+    flexCenter: css;
   }
 }

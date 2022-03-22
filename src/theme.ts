@@ -1,4 +1,10 @@
-import { DefaultTheme } from "styled-components";
+import { css, DefaultTheme } from "styled-components";
+
+const flexCenter = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const lightTheme: DefaultTheme = {
   gradient: "linear-gradient(45deg, #feac5e 0%, #c779d0 50%, #4bc0c8 100%)",
@@ -14,6 +20,7 @@ export const lightTheme: DefaultTheme = {
     boxShadow: "rgba(142, 142, 142, 0.19) 0px 6px 15px 0px",
     color: "rgb(28,28,28)",
   },
+  flexCenter,
 };
 
 export const darkTheme: DefaultTheme = {
@@ -30,4 +37,16 @@ export const darkTheme: DefaultTheme = {
     boxShadow: "rgba(14, 14, 14, 0.19) 0px 6px 15px 0px",
     color: "rgb(255, 255, 255, 0.75)",
   },
+  flexCenter,
+};
+
+const customMediaQuery = (maxWidth: number): string =>
+  `@media (max-width: ${maxWidth}px)`;
+
+export const media = {
+  custom: customMediaQuery,
+  1440: customMediaQuery(1440),
+  768: customMediaQuery(768),
+  tablet: customMediaQuery(1100),
+  mobile: customMediaQuery(500),
 };
