@@ -40,6 +40,7 @@ const BannerContainer = styled.div`
   }
   h2 {
     font-size: 42px;
+    text-shadow: ${(props) => props.theme.textColor} 3px 3px;
   }
   a {
     /* display: block; */

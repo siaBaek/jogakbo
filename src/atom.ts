@@ -10,6 +10,11 @@ const showSignUpState = atom<boolean>({
   default: false,
 });
 
+const showSubMenuState = atom<boolean>({
+  key: "sub_menu",
+  default: false,
+});
+
 const showModalState = atom<boolean>({
   key: "modal",
   default: false,
@@ -50,6 +55,7 @@ const profileImageState = atom<string>({
 export {
   isLightModeState,
   showSignUpState,
+  showSubMenuState,
   showModalState,
   modalPropsState,
   myAddressState,

@@ -12,7 +12,7 @@ export const lightTheme: DefaultTheme = {
   contentBgColor: "white",
   textColor: "#333",
   boxShadow1: "4px 12px 30px 6px rgb(0 0 0 / 9%)",
-  boxShadow2: "4px 12px 30px 6px rgb(0 0 0 / 18%)",
+  boxShadow2: "4px 12px 30ㅛpx 6px rgb(0 0 0 / 18%)",
   gray: "lightgray",
   glass: {
     bgColor: "rgba(255, 255, 255, 0.25)",
