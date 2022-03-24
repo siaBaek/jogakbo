@@ -11,7 +11,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { showSignUpState } from "../../atom";
-import Signup from "../../Components/Modal/Signup";
+import Signup from "../../Components/Modal/SignUpModal";
+import { media } from "../../theme";
 
 // 소개 배너 컴포넌트 Intro
 
@@ -29,7 +30,7 @@ const BannerContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   padding: 200px 0 50px;
-  width: 935px;
+  width: 1100px;
   height: 100%;
   img {
     width: 50px;
@@ -53,6 +54,10 @@ const BannerContainer = styled.div`
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
+  }
+  ${media.tablet} {
+    width: auto;
+    padding: 200px 30px 50px;
   }
 `;
 
@@ -83,9 +88,13 @@ function Intro() {
 // Home
 
 const BrowserContainer = styled.div`
-  width: 935px;
+  width: 1100px;
   margin: 80px auto 300px;
   padding: 30px 0;
+  ${media.tablet} {
+    width: 100%;
+    padding: 0 30px;
+  }
 `;
 
 const GradientBorder = styled.div`

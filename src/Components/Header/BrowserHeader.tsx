@@ -15,9 +15,9 @@ import {
   showSignUpState,
   showSubMenuState,
 } from "../../atom";
-import Signup from "../Modal/Signup";
+import Signup from "../Modal/SignUpModal";
 import { media } from "../../theme";
-import SubMenu from "../Modal/SubMenu";
+import SubMenu from "../Modal/SubMenuModal";
 
 // 위치 고정 + 스크롤 이벤트
 const HeaderWrapper = styled(motion.header)`
@@ -56,6 +56,9 @@ const Logo = styled.h1`
 // Col2
 const MenuUl = styled.ul`
   display: flex;
+  ${media[768]} {
+    display: none;
+  }
 `;
 
 const MenuLi = styled.li`
@@ -79,6 +82,9 @@ const SignUp = styled.div`
     background: ${(props) => props.theme.gradient};
     color: white;
   }
+  ${media[768]} {
+    display: none;
+  }
 `;
 const ModeButton = styled.button`
   margin-left: 15px;
@@ -86,6 +92,7 @@ const ModeButton = styled.button`
 `;
 
 const Hamburger = styled.div`
+  display: none;
   ${media[768]} {
     display: flex;
     flex-direction: column;
