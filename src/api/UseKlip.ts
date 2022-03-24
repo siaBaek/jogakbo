@@ -5,14 +5,19 @@ const A2P_API_PREPARE_URL = "https://a2a-api.klipwallet.com/v2/a2a/prepare";
 const APP_NAME = "JOGAKBO";
 const isMobile = window.screen.width >= 1280 ? false : true;
 
-const getKlipAccessUrl = (method, request_key) => {
+const getKlipAccessUrl = (method: string, request_key: string) => {
   if (method === "QR") {
     return `https://klipwallet.com/?target=/a2a?request_key=${request_key}`;
   }
   return `kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${request_key}`;
 };
 
-export const refund = async (_campaignId, _userAddr, setQrvalue, callback) => {
+export const refund = async (
+  _campaignId: number,
+  _userAddr: string,
+  setQrvalue: Function,
+  callback: Function
+) => {
   const functionJson =
     '{ "constant": false, "inputs": [ { "name": "_campaignId", "type": "uint256" }, { "name": "_userAddr", "type": "address" } ], "name": "refund", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
   executeContract(
@@ -26,10 +31,10 @@ export const refund = async (_campaignId, _userAddr, setQrvalue, callback) => {
 };
 
 export const donateTocampaign = async (
-  _campaignId,
-  _amount,
-  setQrvalue,
-  callback
+  _campaignId: number,
+  _amount: number,
+  setQrvalue: Function,
+  callback: Function
 ) => {
   const functionJson =
     '{ "constant": false, "inputs": [ { "name": "_campaignId", "type": "uint256" }, { "name": "_amount", "type": "uint256" } ], "name": "donateTocampaign", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }';
@@ -43,7 +48,11 @@ export const donateTocampaign = async (
   );
 };
 
-export const setStateToRefund = async (_campaignId, setQrvalue, callback) => {
+export const setStateToRefund = async (
+  _campaignId: number,
+  setQrvalue: Function,
+  callback: Function
+) => {
   const functionJson =
     ' { "constant": false, "inputs": [ { "name": "_campaignId", "type": "uint256" } ], "name": "setStateToRefund", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
   executeContract(
@@ -57,11 +66,11 @@ export const setStateToRefund = async (_campaignId, setQrvalue, callback) => {
 };
 
 export const createCampaign = async (
-  _campaign_name,
-  _campaign_description,
-  _target_amount,
-  setQrvalue,
-  callback
+  _campaign_name: string,
+  _campaign_description: string,
+  _target_amount: number,
+  setQrvalue: Function,
+  callback: Function
 ) => {
   const functionJson =
     ' { "constant": false, "inputs": [ { "name": "_campaign_name", "type": "string" }, { "name": "_campaign_description", "type": "string" }, { "name": "_target_amount", "type": "uint256" } ], "name": "createCampaign", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
@@ -76,12 +85,12 @@ export const createCampaign = async (
 };
 
 export const executeContract = (
-  txTo,
-  functionJSON,
-  value,
-  params,
-  setQrvalue,
-  callback
+  txTo: string,
+  functionJSON: any,
+  value: string,
+  params: any,
+  setQrvalue: Function,
+  callback: Function
 ) => {
   axios
     .post(A2P_API_PREPARE_URL, {
@@ -120,7 +129,7 @@ export const executeContract = (
     });
 };
 
-export const getAddress = (setQrvalue, callback) => {
+export const getAddress = (setQrvalue: Function, callback: Function) => {
   axios
     .post(A2P_API_PREPARE_URL, {
       bapp: {
